@@ -1,2 +1,3 @@
-# Tetris
-Just a Tetirs
+# TicTacToe
+
+Test TicTacToe project
