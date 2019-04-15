@@ -1,16 +1,67 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
+[System.Serializable]
+public class Govneco : System.Object
+{
+    public int p = 5;
+    public Color c = Color.white;
+}
+
+
+[HelpURL("http://example.com/docs/MyComponent.html")]
 public class Info : MonoBehaviour
 {
     private int seconds;
+
+    public Vector3 tests;
+    [Header("Health Settings")]
     public Camera mainCam;
 
+    public Govneco gg;
+
+    [ContextMenuItem("asdfasdf", "DoWW")]
+    [ContextMenuItem("!!", "DoWW2")]
+    [ContextMenuItem("qqqqqqqq", "DoWW")]
+    [ContextMenuItem("wwwwwwww", "DoWW2")]
+    [ContextMenuItem("eeeeee", "DoWW")]
+    [ContextMenuItem("rrrrrr", "DoWW2")]
+    [ContextMenuItem("tttttttt", "DoWW")]
+    [ContextMenuItem("yyyyyyyy", "DoWW2")]
+    [ContextMenuItem("uuuuuuu", "DoWW")]
+    [ContextMenuItem("iiiiiiii", "DoWW2")]
+    [ContextMenuItem("ooooooo", "DoWW")]
+    [ContextMenuItem("pppppppp", "DoWW2")]
     public bool pressed;
 
-    string q;
-    int mode = 0;
+    [TextArea]
+    public string q;
+
+    public int mode = 0;
+
+    [RuntimeInitializeOnLoadMethod]
+    void DoShit()
+    {
+        Debug.Log("RuntimeInitializeOnLoadMethod");
+    }
+
+    [ContextMenu("!!!", false, 599)]
+    void DoMsth()
+    {
+        Debug.Log("Hui");
+    }
+
+    void DoWW()
+    {
+        Debug.Log("Hui");
+    }
+
+    void DoWW2()
+    {
+        Debug.Log("2 Huia");
+    }
 
     void Start()
     {
@@ -21,8 +72,12 @@ public class Info : MonoBehaviour
         print("You are running with " + GetDotNetRuntime());
 
         ApplicationInfo();
+        EditorApplicationInfo();
         ScreenInfo();
         DeviceInfo();
+        AssetDatabaseInfo();
+
+        EditorPrefs.SetBool("__govno", true);
     }
 
     #region Info UselessShit
@@ -79,6 +134,45 @@ public class Info : MonoBehaviour
         print("Application.identifier " + Application.identifier);
 
         print("Application.runInBackground " + Application.runInBackground);
+    }
+
+    void EditorApplicationInfo()
+    {
+        print("======= Editor Application Info =======");
+        print("EditorApplication.scriptingRuntimeVersion " + EditorApplication.scriptingRuntimeVersion);
+
+        print("======= Editor Application Paths =======");
+
+        print("EditorApplication.applicationContentsPath " + EditorApplication.applicationContentsPath);
+        print("EditorApplication.applicationPath " + EditorApplication.applicationPath);
+
+        print("======= Editor Application Status =======");
+
+        print("EditorApplication.isCompiling " + EditorApplication.isCompiling);
+        print("EditorApplication.isPaused " + EditorApplication.isPaused);
+        print("EditorApplication.isPlaying " + EditorApplication.isPlaying);
+        print("EditorApplication.isSceneDirty " + EditorApplication.isSceneDirty);
+        print("EditorApplication.isTemporaryProject " + EditorApplication.isTemporaryProject);
+        print("EditorApplication.isRemoteConnected " + EditorApplication.isRemoteConnected);
+        print("EditorApplication.isUpdating " + EditorApplication.isUpdating);
+
+        print("======= Editor Application Other =======");
+        print("EditorApplication.timeSinceStartup " + EditorApplication.timeSinceStartup);
+    }
+
+    void AssetDatabaseInfo()
+    {
+        print("======= Asset Database Info =======");
+        //AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(AssetDatabase.GUIDToAssetPath(guid)).GetInstanceID();
+        
+        string[] names = AssetDatabase.GetAllAssetBundleNames();
+        print("AssetDatabase.GetAllAssetBundleNames (" + names.Length + "): ");
+        foreach (var name in names)
+        {
+            print(name);
+        }
+        Debug.Log("AssetDatabase.GetCurrentCacheServerIp()" + AssetDatabase.GetCurrentCacheServerIp());
+        Debug.Log("AssetDatabase.IsValidFolder()" + AssetDatabase.IsValidFolder("Assets"));
     }
 
     void ScreenInfo()
@@ -156,8 +250,12 @@ public class Info : MonoBehaviour
         print("Frame " + Time.frameCount);
     }
 
+    private string path = "Assets";
+    private bool result = false;
     void OnGUI()
     {
+        Debug.Log("Current detected event: " + Event.current);
+
         GUI.Label(new Rect(10, 10, 300, 20), Screen.fullScreen.ToString());
         GUI.Label(new Rect(10, 40, 300, 20), Screen.fullScreenMode.ToString());
 
@@ -169,6 +267,16 @@ public class Info : MonoBehaviour
 
         GUI.Label(new Rect(10, 160, 300, 20), PlayerPrefs.GetInt("Screenmanager Resolution Width_h182942802").ToString());
 
+        path = GUI.TextField(new Rect(10, 190, 300, 20), path);
+
+        if (GUI.Button(new Rect(320, 190, 100, 20), "Button"))
+        {
+            result = AssetDatabase.IsValidFolder(path);
+        }
+
+        GUI.Label(new Rect(10, 220, 300, 20), result.ToString());
+
+        
         //GUI.Label(new Rect(10, 40, 300, 20), Screen.orientation.ToString());
         //GUI.Label(new Rect(10, 70, 300, 20), Screen.safeArea.ToString());
 

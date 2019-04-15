@@ -40,7 +40,7 @@ public class TestMagicMethods : MonoBehaviour
     }
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-    static void OnBeforeSceneLoadRuntimeMethod()
+    void OnBeforeSceneLoadRuntimeMethod()
     {
         print("Before first Scene loaded " + Time.time);
     }

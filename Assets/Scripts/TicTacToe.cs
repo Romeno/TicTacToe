@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
+[RequireComponent(typeof(TicTacToePlayArea))]
 public class TicTacToe : MonoBehaviour
 {
     public MarkDatabase markDB;

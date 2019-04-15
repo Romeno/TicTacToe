@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class GameState : MonoBehaviour
 {
-    //public 
-
     private void Awake()
     {
         GameObject[] objs = GameObject.FindGameObjectsWithTag("GameState");

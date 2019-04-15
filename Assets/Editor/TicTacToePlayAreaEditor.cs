@@ -13,24 +13,8 @@ public class TicTacToePlayAreaEditor : Editor
     SerializedProperty backgroundPrefabProp;
     SerializedProperty cellPrefabProp;
 
-    void FlushShit()
-    {
-        Debug.Log("Flush");
-        Debug.Log(Undo.GetCurrentGroupName());
-        Debug.Log(Undo.GetCurrentGroup());
-    }
-
-    void UndoRedo()
-    {
-        Debug.Log("UndoRedo");
-    }
-
     void OnEnable()
     {
-        Undo.undoRedoPerformed += UndoRedo;
-        Undo.willFlushUndoRecord += FlushShit;
-
-
         // Setup the SerializedProperties.
         playableAreaSizeProp = serializedObject.FindProperty("playableAreaSize");
         spacingProp = serializedObject.FindProperty("spacing");
