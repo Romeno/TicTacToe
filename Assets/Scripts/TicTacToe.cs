@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 
 [RequireComponent(typeof(TicTacToePlayArea))]
+[ExecuteInEditMode]
 public class TicTacToe : MonoBehaviour
 {
     public MarkDatabase markDB;
@@ -36,7 +37,7 @@ public class TicTacToe : MonoBehaviour
 
     void Start()
     {
-        fieldSize = GetComponent<TicTacToePlayArea>().playableAreaSize;
+        fieldSize = GetComponent<TicTacToePlayArea>().playAreaSize;
         //cellSize = GetComponent<TicTacToePlayArea>().cellSize;
 
         mathModel = new Cell[fieldSize.y, fieldSize.x];

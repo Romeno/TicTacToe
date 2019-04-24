@@ -219,6 +219,10 @@ public class Info : MonoBehaviour
             print(mainCam.ScreenToWorldPoint(Input.mousePosition));
         }
 
+        SpriteRenderer r = GetComponent<SpriteRenderer>();
+        //r.bounds.Get
+
+
         //pressed = false;
         //if (Input.GetKeyDown(KeyCode.Space))
         //{

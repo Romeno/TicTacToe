@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class TicTacToePlayArea : MonoBehaviour
 {
-    public Vector2Int playableAreaSize;
+    public Vector2Int playAreaSize;
     public float spacing;
-    public GameObject backgroundPrefab;
+    public SpriteRenderer bgObj;
     public Cell cellPrefab;
 
     private void Reset()
     {
-        playableAreaSize = new Vector2Int(3, 3);
+        playAreaSize = new Vector2Int(3, 3);
         spacing = 0.2f;
     }
 }
