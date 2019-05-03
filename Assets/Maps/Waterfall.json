@@ -1,0 +1,26 @@
+{
+	name: "Waterfall",
+	size : {
+		x: 10, 
+		y: 10
+	},
+	piecesToWin: 5,
+	obstacles: [
+		{
+			id: 0,
+			coords: {
+				x: 3,
+				y: 3
+			}
+		}
+	],
+	enemies: [
+		{
+			id: 0,
+			coords: {
+				x: 3,
+				y: 3
+			}
+		}
+	]	
+}

@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Mark : IRObject<MarkType>
 {
+    [SerializeField]
     private MarkType _type;
+
+    [SerializeField]
     private GameObject _go;
 
     public MarkType type

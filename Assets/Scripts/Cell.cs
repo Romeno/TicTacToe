@@ -7,11 +7,13 @@ using UnityEngine.EventSystems;
 public class Cell : MonoBehaviour, IPointerClickHandler
 {
     public Mark mark;
+    public bool canPlaceMark;
 
     // Start is called before the first frame update
     void Start()
     {
         mark = null;
+        canPlaceMark = true;
 
         print(GetComponent<SpriteRenderer>().sprite.pixelsPerUnit);
         print(GetComponent<SpriteRenderer>().sprite.rect);
@@ -26,6 +28,6 @@ public class Cell : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        print("clicked");
+        GameObject.Find("TicTacToe").GetComponent<TicTacToe>().CellClicked(gameObject);
     }
 }

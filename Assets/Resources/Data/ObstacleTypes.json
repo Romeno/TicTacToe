@@ -1,0 +1,65 @@
+[
+	{
+	  "name": "Forest",
+	  "size": {
+		"x": 2,
+		"y": 3
+	  },
+	  "center": {
+		"x": 1,
+		"y": 1
+	  },
+	  "physicalShape": [
+		[
+		  0,
+		  1
+		],
+		[
+		  1,
+		  1
+		],
+		[
+		  0,
+		  1
+		]
+	  ],
+	  "model": "Forest1"
+	},
+	{
+	  "name": "Rock",
+	  "size": {
+		"x": 1,
+		"y": 1
+	  },
+	  "center": {
+		"x": 0,
+		"y": 0
+	  },
+	  "physicalShape": [
+		[
+		  1
+		],
+	  ],
+	  "model": "Rock1"
+	},
+	{
+	  "name": "Hole",
+	  "size": {
+		"x": 1,
+		"y": 1
+	  },
+	  "center": {
+		"x": 1,
+		"y": 1
+	  },
+	  "physicalShape": [
+		[
+		  0
+		]
+	  ],
+	  "model": "Hole1"
+	},
+]
+
+
+

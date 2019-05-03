@@ -1,0 +1,14 @@
+{
+	name: "Standard 3x3",
+	size : {
+		x: 3, 
+		y: 3
+	},
+	piecesToWin: 3,
+	obstacles: [
+	
+	],
+	enemies: [
+	
+	]	
+}

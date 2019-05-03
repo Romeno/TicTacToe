@@ -1,0 +1,98 @@
+[
+	{
+	  "name": "Skull",
+	  "size": {
+		"x": 3,
+		"y": 3
+	  },
+	  "center": {
+		"x": 1,
+		"y": 1
+	  },
+	  "physicalShape": [
+		[
+		  0,
+		  1,
+		  0
+		],
+		[
+		  1,
+		  1,
+		  1
+		],
+		[
+		  0,
+		  1,
+		  0
+		]
+	  ],
+	  "moveBehaviour": {
+		"$type": "Stationary, Assembly-CSharp"
+	  },
+	  "actionBehaviour": {
+		"$type": "MarkAttackerRadial, Assembly-CSharp",
+		"radius": 0
+	  },
+	  "model": "skull"
+	},
+	{
+	  "name": "Ghost",
+	  "size": {
+		"x": 1,
+		"y": 1
+	  },
+	  "center": {
+		"x": 0,
+		"y": 0
+	  },
+	  "physicalShape": [
+		[
+		  0
+		],
+	  ],
+	  "moveBehaviour": {
+		"$type": "SnakePatroler, Assembly-CSharp",
+		verticalDirection: 0,
+		direction: 0,
+		speed: 1.1
+	  },
+	  "actionBehaviour": {
+		"$type": "MarkAttackerRadial, Assembly-CSharp",
+		"radius": 0
+	  },
+	  "model": "ghost"
+	},
+	{
+	  "name": "Broom",
+	  "size": {
+		"x": 2,
+		"y": 3
+	  },
+	  "center": {
+		"x": 1,
+		"y": 1
+	  },
+	  "physicalShape": [
+		[
+		  0,
+		  1
+		],
+		[
+		  1,
+		  1
+		],
+		[
+		  1,
+		  0
+		]
+	  ],
+	  "moveBehaviour": {
+		"$type": "LinePatroler, Assembly-CSharp"
+	  },
+	  "actionBehaviour": {
+		"$type": "MarkAttackerRadial, Assembly-CSharp",
+		"radius": 0
+	  },
+	  "model": "broom"
+	},
+]

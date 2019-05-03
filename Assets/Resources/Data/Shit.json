@@ -1,0 +1,24 @@
+[
+	{
+		"Name": "Apple",
+		"ExpiryDate": "2008-12-28T00:00:00",
+		"Price": 3.99,
+		"Sizes": [
+			"Small",
+			"Medium",
+			"Large"
+		]
+	},
+	{
+		"Name": "PineApple",
+		"ExpiryDate": "2008-12-28T00:00:00",
+		"Price": 4.99,
+		"Sizes": [
+			"Small",
+			"Medium",
+			"Large",
+			"Shit"
+		]
+	},
+]
+
