@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
+    public ObstacleType type;
+    public Vector3 pos;
+
     // Start is called before the first frame update
     void Start()
     {

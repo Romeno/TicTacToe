@@ -4,8 +4,19 @@ using UnityEngine;
 
 public static class TicTacToeGlobal
 {
-    public static EnemyType[] enemyTypes;
-    public static ObstacleType[] obstacleTypes;
+    public static TicTacToeViews _views;
+
+    public static List<EnemyType> enemyTypes;
+    public static List<ObstacleType> obstacleTypes;
+    public static List<Map> maps;
+
+    public static TicTacToeViews views
+    {
+        get
+        {
+            return GameObject.Find("Game Views").GetComponent<TicTacToeViews>();
+        }
+    }
 
     public static Vector2Int fieldSizeInCells
     {

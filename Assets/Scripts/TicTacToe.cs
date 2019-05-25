@@ -11,7 +11,8 @@ public enum GameState
     Win,
     Lose,
     Draw,
-    StopAtOnce
+    StopAtOnce,
+    Pause
 }
 
 [RequireComponent(typeof(TicTacToePlayArea))]
@@ -63,7 +64,7 @@ public class TicTacToe : MonoBehaviour
 
         for (int  i = 0; i < background.transform.childCount; i++)
         {
-            mathModel[(int)(i / fieldSize.y), i % fieldSize.x] = background.transform.GetChild(i).GetComponent<Cell>();
+            mathModel[(int)(i / fieldSize.x), i % fieldSize.x] = background.transform.GetChild(i).GetComponent<Cell>();
         }
 
         // load all marks
@@ -100,6 +101,8 @@ public class TicTacToe : MonoBehaviour
     void NewGame()
     {
         CreateField();
+        CreateObstacles();
+        CreateEnemies();
 
         playerTurn = 0;
         spawning = false;
@@ -128,6 +131,16 @@ public class TicTacToe : MonoBehaviour
         //        }
         //    }
         //}
+    }
+
+    void CreateObstacles()
+    {
+
+    }
+
+    void CreateEnemies()
+    {
+
     }
 
     public void RemoveMark(int x, int y)
@@ -201,7 +214,7 @@ public class TicTacToe : MonoBehaviour
             int i = 0;
             for (int j = 0; i < fieldSize.x * fieldSize.y; i++)
             {
-                Mark m = mathModel[(int)(i / fieldSize.y), i % fieldSize.x].mark;
+                Mark m = mathModel[(int)(i / fieldSize.x), i % fieldSize.x].mark;
                 if (m == null)
                 {
                     if (j == aiMove)
@@ -210,7 +223,7 @@ public class TicTacToe : MonoBehaviour
                         Transform cellTrans = background.transform.GetChild(i);
                         m.go = Instantiate(players[playerTurn].markType.objectPrefab, cellTrans.position, Quaternion.identity, cellTrans);
                         m.type = players[playerTurn].markType;
-                        mathModel[(int)(i / fieldSize.y), i % fieldSize.x].mark = m;
+                        mathModel[(int)(i / fieldSize.x), i % fieldSize.x].mark = m;
                         freeCells--;
                         break;
                     }
@@ -219,7 +232,7 @@ public class TicTacToe : MonoBehaviour
             }
 
             // check win 
-            if (CheckWin(i % fieldSize.x, (int)(i / fieldSize.y)))
+            if (CheckWin(i % fieldSize.x, (int)(i / fieldSize.x)))
             {
                 state = GameState.Lose;
             }
@@ -241,11 +254,11 @@ public class TicTacToe : MonoBehaviour
 
     void WinStateLogic()
     {
-        Animator a = gameOverObject.transform.GetChild(0).GetComponent<Animator>();
+        Animator a = gameOverObject.transform.GetChild(0).GetChild(0).GetComponent<Animator>();
         if (!gameOver)
         {
             gameOverObject.SetActive(true);
-            gameOverObject.transform.GetChild(0).GetComponent<Text>().text = "You Win!";
+            gameOverObject.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = "You Win!";
             gameOver = true;
         }
         else
@@ -263,7 +276,7 @@ public class TicTacToe : MonoBehaviour
 
     void LoseStateLogic()
     {
-        Animator a = gameOverObject.transform.GetChild(0).GetComponent<Animator>();
+        Animator a = gameOverObject.transform.GetChild(0).GetChild(0).GetComponent<Animator>();
         if (!gameOver)
         {
             gameOverObject.SetActive(true);
@@ -271,6 +284,7 @@ public class TicTacToe : MonoBehaviour
         }
         else
         {
+            // if animation finished
             if (a.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !a.IsInTransition(0))
             {
                 if (Input.anyKeyDown)
@@ -284,11 +298,11 @@ public class TicTacToe : MonoBehaviour
 
     void DrawStateLogic()
     {
-        Animator a = gameOverObject.transform.GetChild(0).GetComponent<Animator>();
+        Animator a = gameOverObject.transform.GetChild(0).GetChild(0).GetComponent<Animator>();
         if (!gameOver)
         {
             gameOverObject.SetActive(true);
-            gameOverObject.transform.GetChild(0).GetComponent<Text>().text = "It is draw! Nobody wins!";
+            gameOverObject.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = "It is draw! Nobody wins!";
             gameOver = true;
         }
         else
@@ -310,7 +324,7 @@ public class TicTacToe : MonoBehaviour
         {
             int index = cell.transform.GetSiblingIndex();
 
-            Cell c = mathModel[(int)(index / fieldSize.y), index % fieldSize.x];
+            Cell c = mathModel[(int)(index / fieldSize.x), index % fieldSize.x];
 
             if (c.canPlaceMark)
             {
@@ -326,10 +340,10 @@ public class TicTacToe : MonoBehaviour
                 m = new Mark();
                 m.go = Instantiate(players[playerTurn].markType.objectPrefab, cell.transform.position, Quaternion.identity, cell.transform);
                 m.type = players[playerTurn].markType;
-                mathModel[(int)(index / fieldSize.y), index % fieldSize.x].mark = m;
+                mathModel[(int)(index / fieldSize.x), index % fieldSize.x].mark = m;
 
                 // check win 
-                if (CheckWin(index % fieldSize.x, (int)(index / fieldSize.y)))
+                if (CheckWin(index % fieldSize.x, (int)(index / fieldSize.x)))
                 {
                     state = GameState.Win;
                 }

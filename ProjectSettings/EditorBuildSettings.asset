@@ -5,13 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: Assets/StandaloneFileBrowser/Sample/BasicSampleScene.unity
+    guid: d97280fe82b874466870f709c3315d41
   - enabled: 1
-    path: Assets/Scenes/Main. Menu.unity
+    path: Assets/Scenes/TicTacToe.unity
     guid: 679bf63d44a4a1b4abaa58a51e85eb37
-  - enabled: 1
-    path: Assets/Scenes/Main.unity
+  - enabled: 0
+    path: Assets/Scenes/old/Main.unity
     guid: ef511bf2b320ce74492dba1e274a08b6
-  - enabled: 1
-    path: Assets/Scenes/Play - Choose Map. Menu.unity
-    guid: ea2dcdd087435be4ba64f011a9d04ed6
+  - enabled: 0
+    path: Assets/Scenes/old/Design - Edit Map.unity
+    guid: b9a587453956e0b4db2eca4a4d45af75
   m_configObjects: {}
