@@ -8,18 +8,16 @@ public class LinePatroler: MoveBehaviour
     public int direction;
     public float speed;
 
-    // Start is called before the first frame update
     public override void Start()
     {
         
     }
 
-    // Update is called once per frame
     public override void Update()
     {
         var e = c.GetComponent<Enemy>();
 
-        if (e.moveState == MoveState.Stop)
+        if (e.data.moveState == MoveState.Stop)
         {
             return;
         }

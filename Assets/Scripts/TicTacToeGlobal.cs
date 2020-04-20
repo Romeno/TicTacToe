@@ -5,6 +5,8 @@ using UnityEngine;
 public static class TicTacToeGlobal
 {
     public static TicTacToeViews _views;
+    public static ModalManager _modalManager;
+    public static MusicManager _musicManager;
 
     public static List<EnemyType> enemyTypes;
     public static List<ObstacleType> obstacleTypes;
@@ -17,6 +19,23 @@ public static class TicTacToeGlobal
             return GameObject.Find("Game Views").GetComponent<TicTacToeViews>();
         }
     }
+
+    public static ModalManager modalManager
+    {
+        get
+        {
+            return GameObject.Find("Modal Manager").GetComponent<ModalManager>();
+        }
+    }
+
+    public static MusicManager musicManager
+    {
+        get
+        {
+            return GameObject.Find("Music Manager").GetComponent<MusicManager>();
+        }
+    }
+
 
     public static Vector2Int fieldSizeInCells
     {

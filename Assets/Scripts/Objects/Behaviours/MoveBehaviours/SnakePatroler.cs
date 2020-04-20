@@ -11,13 +11,11 @@ public class SnakePatroler : MoveBehaviour
 
     private Vector3 nextTurnY;
 
-    // Start is called before the first frame update
     public override void Start()
     {
         
     }
 
-    // Update is called once per frame
     public override void Update()
     {
         //var e = GetComponent<Enemy>();

@@ -15,20 +15,42 @@ public class TicTacToeViews : MonoBehaviour
     public GameObject settingsView;
     public GameObject fileManagerView;
 
-    // Start is called before the first frame update
-    void Start()
+    public float startTime;
+    public bool started = false;
+
+    void Awake()
     {
-        ActivateGameView();
+        background.SetActive(false);
+        logoView.SetActive(false);
+        mainMenuView.SetActive(false);
+        chooseMapView.SetActive(false);
+        gameView.SetActive(false);
+        designView.SetActive(false);
+        editEnemyView.SetActive(false);
+        editObstacleView.SetActive(false);
+        settingsView.SetActive(false);
+        fileManagerView.SetActive(false);
     }
 
-    // Update is called once per frame
+    void Start()
+    {
+        startTime = Time.time;
+
+    }
+
     void Update()
     {
-
+        if (Time.time - startTime > 1 && !started)
+        {
+            ActivateGameView();
+            started = true;
+        }
     }
 
     public void ActivateLogoView()
     {
+        background.SetActive(false);
+
         logoView.SetActive(true);
         mainMenuView.SetActive(false);
         chooseMapView.SetActive(false);
@@ -43,6 +65,7 @@ public class TicTacToeViews : MonoBehaviour
     public void ActivateMainMenuView()
     {
         background.SetActive(true);
+        TicTacToeGlobal.musicManager.SwitchToMainMenuTheme();
 
         logoView.SetActive(false);
         mainMenuView.SetActive(true);
@@ -71,6 +94,7 @@ public class TicTacToeViews : MonoBehaviour
     public void ActivateGameView()
     {
         background.SetActive(false);
+        TicTacToeGlobal.musicManager.SwitchToGameTheme();
 
         logoView.SetActive(false);
         mainMenuView.SetActive(false);

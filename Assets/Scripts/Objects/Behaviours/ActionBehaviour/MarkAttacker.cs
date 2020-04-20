@@ -19,7 +19,7 @@ public abstract class MarkAttacker : ActionBehaviour
         var e = c.GetComponent<Enemy>();
         var a = c.GetComponent<Animator>();
 
-        if (e.actionState == ActionState.Attack)
+        if (e.data.actionState == ActionState.Attack)
         {
             if (a.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !a.IsInTransition(0))
             {
@@ -27,8 +27,8 @@ public abstract class MarkAttacker : ActionBehaviour
 
                 foreach (Cell c in affectedCells)
                 {
-                    e.moveState = MoveState.Move;
-                    e.actionState = ActionState.Idle;
+                    e.data.moveState = MoveState.Move;
+                    e.data.actionState = ActionState.Idle;
                     TicTacToeGlobal.RemoveMark(c.transform.position);
                 }
             }
@@ -39,8 +39,8 @@ public abstract class MarkAttacker : ActionBehaviour
 
             if (affectedCells.FirstOrDefault(c => c.mark != null) != null)
             {
-                e.moveState = MoveState.Stop;
-                e.actionState = ActionState.Attack;
+                e.data.moveState = MoveState.Stop;
+                e.data.actionState = ActionState.Attack;
                 a.SetTrigger("Attack");
             }
         }

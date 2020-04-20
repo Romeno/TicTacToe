@@ -8,13 +8,11 @@ using System.IO;
 public class ChooseMapView : MonoBehaviour
 {
     #region Unity
-    // Start is called before the first frame update
     void Start()
     {
         LoadMaps();
     }
 
-    // Update is called once per frame
     void Update()
     {
         

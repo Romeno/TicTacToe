@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Map
 {
+    public string name;
     public Vector2Int size;
     public float spacing;
     public int minPlayers;

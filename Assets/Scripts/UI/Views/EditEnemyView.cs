@@ -9,13 +9,11 @@ using UnityEngine.UI;
 public class EditEnemyView : MonoBehaviour
 {
     #region Unity
-    // Start is called before the first frame update
     void Start()
     {
 
     }
 
-    // Update is called once per frame
     void Update()
     {
 
@@ -37,15 +35,5 @@ public class EditEnemyView : MonoBehaviour
     {
         TicTacToeGlobal.views.ActivateDesignView();
     }
-
-    public void ShowFileManager()
-    {
-        InitFileManager();
-    }
     #endregion
-
-    public void InitFileManager()
-    {
-        FileManager.Show(Application.temporaryCachePath);
-    }
 }

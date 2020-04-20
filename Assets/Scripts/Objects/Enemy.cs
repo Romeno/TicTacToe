@@ -5,21 +5,13 @@ using Newtonsoft.Json;
 
 public class Enemy : MonoBehaviour
 {
-    [JsonIgnore]
-    public MoveState moveState;
+    public EnemyData data;
 
-    [JsonIgnore]
-    public ActionState actionState;
-
-    EnemyType type;
-
-    // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         

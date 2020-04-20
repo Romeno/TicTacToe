@@ -9,7 +9,6 @@ public class Cell : MonoBehaviour, IPointerClickHandler
     public Mark mark;
     public bool canPlaceMark;
 
-    // Start is called before the first frame update
     void Start()
     {
         mark = null;
@@ -20,7 +19,6 @@ public class Cell : MonoBehaviour, IPointerClickHandler
         print(GetComponent<SpriteRenderer>().bounds);
     }
 
-    // Update is called once per frame
     void Update()
     {
         

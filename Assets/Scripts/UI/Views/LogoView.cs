@@ -8,7 +8,6 @@ public class LogoView : MonoBehaviour
     private bool finishing;
     private bool openAnimFinished;
 
-    // Start is called before the first frame update
     void Start()
     {
         Init();
@@ -21,7 +20,11 @@ public class LogoView : MonoBehaviour
         openAnimFinished = false;
     }
 
-    // Update is called once per frame
+    public void PlaySound()
+    {
+        //GetComponent<AudioSource>().
+    }
+
     void Update()
     {
         var a = GetComponent<Animator>();
@@ -39,12 +42,6 @@ public class LogoView : MonoBehaviour
             }
         }
 
-        // if animation finished
-        if (a.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !a.IsInTransition(0) && !finishing)
-        {
-            openAnimFinished = true;
-        }
-
         if (openAnimFinished && !finishing)
         {
             if (Time.time - startTime > 2)
@@ -60,5 +57,10 @@ public class LogoView : MonoBehaviour
 
         finishing = true;
         a.SetTrigger("Finish");
+    }
+
+    void AnimFinishedEvent()
+    {
+        openAnimFinished = true;
     }
 }

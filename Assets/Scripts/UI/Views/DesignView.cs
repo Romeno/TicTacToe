@@ -8,13 +8,11 @@ using UnityEngine.UI;
 public class DesignView : MonoBehaviour
 {
     #region Unity
-    // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -65,17 +63,7 @@ public class DesignView : MonoBehaviour
         Debug.Log(EventSystem.current.currentSelectedGameObject);
         Object.Destroy(EventSystem.current.currentSelectedGameObject.transform.parent.gameObject);
     }
-
-    public void ShowFileManager()
-    {
-        InitFileManager();
-    }
     #endregion
-
-    public void InitFileManager()
-    {
-        FileManager.Show(Application.temporaryCachePath);
-    }
 
     public static void ImportAssetPressed()
     {

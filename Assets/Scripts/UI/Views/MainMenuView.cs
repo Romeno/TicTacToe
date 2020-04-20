@@ -14,7 +14,6 @@ public class MainMenuView : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         var a = GetComponent<Animator>();
@@ -55,10 +54,10 @@ public class MainMenuView : MonoBehaviour
             }
         }
     }
-        #endregion
+    #endregion
 
-        #region PlayerActions
-        public void Play()
+    #region PlayerActions
+    public void Play()
     {
         var a = GetComponent<Animator>();
 

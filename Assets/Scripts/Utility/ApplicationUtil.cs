@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 
 
-class ApplicationUtil
+public static class ApplicationUtil
 {
     public static void Quit()
     {

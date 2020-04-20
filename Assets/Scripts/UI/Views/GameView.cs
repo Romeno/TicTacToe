@@ -14,7 +14,6 @@ public class GameView : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void Update()
     {
 
@@ -25,11 +24,8 @@ public class GameView : MonoBehaviour
 
     public void Quit()
     {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-        Application.Quit();
-#endif
+        ApplicationUtil.Quit();
     }
+
     #endregion
 }

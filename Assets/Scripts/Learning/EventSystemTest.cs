@@ -13,7 +13,6 @@ public interface IRomenoMessageHandler : IEventSystemHandler
 
 public class EventSystemTest : MonoBehaviour, IRomenoMessageHandler, IMoveHandler, ISubmitHandler, IPointerClickHandler
 {
-    // Start is called before the first frame update
     void Start()
     {
         
@@ -29,7 +28,6 @@ public class EventSystemTest : MonoBehaviour, IRomenoMessageHandler, IMoveHandle
         print("Submit");
     }
 
-    // Update is called once per frame
     void Update()
     {
         

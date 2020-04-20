@@ -49,20 +49,63 @@ public class TicTacToe : MonoBehaviour
     private int[] marksByDirection;
     private bool[] shouldMoveDirection;
 
+    public GameObject enemyPrefab;
+    public GameObject obstaclePrefab;
+
+    private Enemy[] enemies;
+    private Obstacle[] obstacles;
+
     public GameState state;
+    public VertMenuModalDescription mainMenuDesc;
 
     #region TicTacToe Initialization
 
     void Start()
+    {
+        Init();
+
+        NewGame();
+    }
+
+    public void Init()
+    {
+        markPool = new ObjectPool<Mark, MarkType>();
+
+        mainMenuDesc = new VertMenuModalDescription("Menu", "Resume game", ResumeGame);
+        mainMenuDesc.AddButton("Save game", DoNothing);
+        mainMenuDesc.AddButton("Load game", DoNothing);
+        mainMenuDesc.AddButton("Settings", DoNothing);
+        mainMenuDesc.AddButton("Exit", ExitGame);
+
+        
+    }
+
+    #region MainMenu Actions
+    public void ResumeGame(GameObject modal)
+    {
+        GameObject.Destroy(modal);
+    }
+
+    public void ExitGame(GameObject modal)
+    {
+        ApplicationUtil.Quit();
+    }
+
+    public void DoNothing(GameObject modal)
+    {
+        // just like I do
+    }
+
+    #endregion
+
+    void NewGame()
     {
         fieldSize = GetComponent<TicTacToePlayArea>().playAreaSize;
         //cellSize = GetComponent<TicTacToePlayArea>().cellSize;
 
         mathModel = new Cell[fieldSize.y, fieldSize.x];
 
-        markPool = new ObjectPool<Mark, MarkType>();
-
-        for (int  i = 0; i < background.transform.childCount; i++)
+        for (int i = 0; i < background.transform.childCount; i++)
         {
             mathModel[(int)(i / fieldSize.x), i % fieldSize.x] = background.transform.GetChild(i).GetComponent<Cell>();
         }
@@ -86,7 +129,18 @@ public class TicTacToe : MonoBehaviour
 
         freeCells = fieldSize.x * fieldSize.y;
 
-        NewGame();
+        ConfigReader reader = new ConfigReader();
+        reader.Read();
+
+        CreateField();
+        //CreateObstacles();
+        //CreateEnemies();
+
+        playerTurn = 0;
+        spawning = false;
+        gameOver = false;
+
+        score = 0;
 
         playerTurn = 0;
 
@@ -96,19 +150,6 @@ public class TicTacToe : MonoBehaviour
         shouldMoveDirection = new bool[8];
 
         state = GameState.Game;
-    }
-
-    void NewGame()
-    {
-        CreateField();
-        CreateObstacles();
-        CreateEnemies();
-
-        playerTurn = 0;
-        spawning = false;
-        gameOver = false;
-
-        score = 0;
     }
 
     void CreateField()
@@ -135,12 +176,28 @@ public class TicTacToe : MonoBehaviour
 
     void CreateObstacles()
     {
+        obstacles = new Obstacle[2];
 
+        GameObject obstacle = Instantiate(obstaclePrefab, new Vector3(0, 1, 0), Quaternion.identity);
+        Obstacle oc = obstacle.GetComponent<Obstacle>();
+        oc.data.type = TicTacToeGlobal.obstacleTypes[0];
+        obstacles[0] = oc;
+
+        obstacle = Instantiate(obstaclePrefab, new Vector3(1, 1, 0), Quaternion.identity);
+        oc = obstacle.GetComponent<Obstacle>();
+        oc.data.type = TicTacToeGlobal.obstacleTypes[1];
+        obstacles[1] = obstacle.GetComponent<Obstacle>();
     }
 
     void CreateEnemies()
     {
+        enemies = new Enemy[2];
 
+        GameObject enemy = Instantiate(enemyPrefab, Vector3.zero, Quaternion.identity);
+        enemies[0] = enemy.GetComponent<Enemy>();
+
+        enemy = Instantiate(enemyPrefab, new Vector3(1, 0, 0), Quaternion.identity);
+        enemies[1] = enemy.GetComponent<Enemy>();
     }
 
     public void RemoveMark(int x, int y)
@@ -162,6 +219,8 @@ public class TicTacToe : MonoBehaviour
     int attacks = 0;
     void Update()
     {
+        HandleKeyboard();
+
         if (CheckGameOver())
         {
             state = GameState.StopAtOnce;
@@ -186,6 +245,14 @@ public class TicTacToe : MonoBehaviour
             default:
                 Debug.Log("Unknown game state " + state);
                 break;
+        }
+    }
+
+    public void HandleKeyboard()
+    {
+        if (Input.GetKey(KeyCode.F10))
+        {
+            TicTacToeGlobal.modalManager.ShowVertMenuModal(GameObject.Find("Canvas").transform, true, mainMenuDesc);
         }
     }
 

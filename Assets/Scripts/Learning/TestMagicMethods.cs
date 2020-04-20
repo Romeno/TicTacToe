@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class TestMagicMethods : MonoBehaviour
 {
-    // Start is called before the first frame update
     void Start()
     {
         //print("~!----------Start called " + Time.frameCount);
     }
 
-    // Update is called once per frame
     void Update()
     {
         //print("~!-----------Update called " + Time.frameCount);

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TicTacToePlayArea : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class TicTacToePlayArea : MonoBehaviour
     public float spacing;
     public SpriteRenderer bgObj;
     public Cell cellPrefab;
+
 
     private void Reset()
     {

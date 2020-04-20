@@ -4,16 +4,13 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
-    public ObstacleType type;
-    public Vector3 pos;
+    public ObstacleData data;
 
-    // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         

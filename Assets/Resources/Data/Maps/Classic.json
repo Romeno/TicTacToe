@@ -1,0 +1,18 @@
+{
+	"name": "Classic",
+	"size": {
+		"x": 3,
+		"y": 3
+	},
+	"spacing": 10,
+	"minPlayers": 2,
+	"maxPlayers": 2,
+	"piecesToWin": 3,
+	"obstacles": [
+	
+	],
+	"enemies": [
+	
+	]
+}
+
